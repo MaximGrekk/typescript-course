@@ -1,6 +1,19 @@
-let revenue: number = 1000;
-let bonus: number = 500;
-let c: string = 'sdf';
+function getFullName(userEntity: {
+  firstname: string;
+  surname: string;
+}): string {
+  return `${userEntity.firstname} ${userEntity.surname}`;
+}
 
-let res: number  = revenue + bonus;
-console.log(res);
+const user = {
+  firstname: "Maxim",
+  surname: "Sergeev",
+  city: "Ivanovo",
+  age: 21,
+  skills: {
+      devops: false,
+      frontend: true,
+  }
+};
+
+console.log(getFullName(user));
