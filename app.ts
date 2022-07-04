@@ -1,38 +1,34 @@
-enum StatusCode {
-  SUCCESS = "s",
-  IN_PROCESS = "p",
-  FAILED = "f",
+// async function getFaqs(req) {
+//     const res = await fetch('/faqs', {
+//         method: 'POST',
+//         body: JSON.stringify(req),
+//     })
+//     const data = await res.json();
+//     return data;
+// }
+
+enum QuestionStatus {
+  PUBLISHED = "published",
+  DRAFT = "draft",
+  DELETED = "deleted",
 }
 
-const res = {
-  message: "payload is sucessfull",
-  status: StatusCode.SUCCESS,
-};
-
-// 1 - sucess
-// 2 - in process
-// 3 - error
-
-if (res.status === StatusCode.SUCCESS) {
+async function getFaqs(req: {
+  topicId: number;
+  status: QuestionStatus;
+}): Promise<
+  {
+    question: string;
+    answer: string;
+    tags: string[];
+    likes: number;
+    status?: QuestionStatus;
+  }[]
+> {
+  const res = await fetch("/faqs", {
+    method: "POST",
+    body: JSON.stringify(req),
+  });
+  const data = await res.json();
+  return data;
 }
-
-function action(status: StatusCode) {}
-
-action(StatusCode.SUCCESS);
-
-function compute() {
-  return 3;
-}
-
-const enum Roles {
-  ADMIN = 1,
-  USER = 2,
-}
-
-const res2 = Roles.ADMIN
-
-// function test(x: { ADMIN: number }) { 
-
-// };
-
-// test(Roles)
