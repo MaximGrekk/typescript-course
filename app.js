@@ -1,25 +1,40 @@
 "use strict";
-var StatusCode;
-(function (StatusCode) {
-    StatusCode["SUCCESS"] = "s";
-    StatusCode["IN_PROCESS"] = "p";
-    StatusCode["FAILED"] = "f";
-})(StatusCode || (StatusCode = {}));
-const res = {
-    message: "payload is sucessfull",
-    status: StatusCode.SUCCESS,
-};
-// 1 - sucess
-// 2 - in process
-// 3 - error
-if (res.status === StatusCode.SUCCESS) {
+function logId(id) {
+    if (typeof id === "string") {
+        console.log(id);
+    }
+    else if (typeof id === "number") {
+        console.log(id);
+    }
+    else {
+        console.log(id);
+    }
 }
-function action(status) { }
-action(StatusCode.SUCCESS);
-function compute() {
-    return 3;
+logId(1);
+logId("1");
+function logError(err) {
+    if (Array.isArray(err)) {
+        console.log(err);
+    }
+    else {
+        console.log(err);
+    }
 }
-const res2 = 1 /* Roles.ADMIN */;
-// function test(x: { ADMIN: number }) { 
-// };
-// test(Roles)
+function logObject(obj) {
+    if ('a' in obj) {
+        console.log(obj.a);
+    }
+    else {
+        console.log(obj.b);
+    }
+}
+function logMultipleIds(a, b) {
+    if (a === b) {
+        console.log(a, b);
+    }
+    else {
+        console.log(a);
+    }
+}
+let a = 1;
+const b = 2;
