@@ -1,15 +1,18 @@
-enum RequestType {
-  GET = "get",
-  POST = "post",
+type User = {
+    name: string,
+    age: number,
+    skills: string[]
 }
 
-// function fetchWithAuth(url: string, method: RequestType) {}
-
-function fetchWithAuth(url: string, method: "post" | "get"): 1 | -1 {
-    return 1;
+type Role = {
+    id: number
 }
-fetchWithAuth("s", "get");
 
-let method = 'post';
+type UserWithRole = User & Role;
 
-fetchWithAuth('s', method as 'post')
+let user: UserWithRole = {
+  name: "Max",
+  age: 33,
+  skills: ["front", "back"],
+  id: 1
+};
