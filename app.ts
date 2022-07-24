@@ -1,18 +1,29 @@
 interface User {
-  name: string;
-}
-
-interface User {
-  age: number;
+  login: string;
+  password?: string;
 }
 
 const user: User = {
-    name: 'Maxim',
-    age: 21,
+  login: "MaximGrekk",
+  password: "PASS_word",
+};
+
+function multiply(first: number = 5, second?: number): number {
+  if (!second) return first * first;
+  return first * second;
 }
 
-type ID = string | number;
+interface UserPro {
+  login: string;
+  password?: {
+    type: "primary" | "secondary";
+  };
+}
 
-interface IDI {
-    ID: ID
+function testPass(user: UserPro) {
+  const t = user.password?.type;
+}
+
+function test(param?: string) {
+  const t = param ?? multiply(5);
 }
