@@ -1,29 +1,35 @@
-interface User {
-  login: string;
-  password?: string;
+enum PaymentStatus {
+  Success = "success",
+  Failed = "failed",
 }
 
-const user: User = {
-  login: "MaximGrekk",
-  password: "PASS_word",
-};
-
-function multiply(first: number = 5, second?: number): number {
-  if (!second) return first * first;
-  return first * second;
+interface IPayment {
+  sum: number;
+  from: number;
+  to: number;
 }
 
-interface UserPro {
-  login: string;
-  password?: {
-    type: "primary" | "secondary";
-  };
+interface IPaymentsRequest extends IPayment {}
+
+interface IDataSuccess extends IPayment {
+  databaseId: number;
+}
+interface IDataError {
+  errorMessage: string;
+  errorCode: number;
 }
 
-function testPass(user: UserPro) {
-  const t = user.password?.type;
+interface IResponse {
+  status: PaymentStatus;
+  data: IDataSuccess | IDataError;
 }
 
-function test(param?: string) {
-  const t = param ?? multiply(5);
+interface IResponseSuccess {
+  status: PaymentStatus.Success;
+  data: IDataSuccess;
+}
+
+interface IResponseFailed {
+  status: PaymentStatus.Failed;
+  data: IDataSuccess;
 }
