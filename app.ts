@@ -1,34 +1,33 @@
-let input: unknown;
+function generatorError(message: string): never {
+  throw new Error(message);
+}
 
-input = 3;
-input = ["da", "adad"];
+function dumpError(): never {
+  while (true) {}
+}
 
-function run(i: unknown) {
-  if (typeof i === "number") {
-    i++;
-  } else {
-    i;
+function rec(): never {
+  return rec();
+}
+
+type paymentAction = "refunc" | "checkout" | "reject";
+
+function processAction(action: paymentAction) {
+  switch (action) {
+    case "refunc":
+      // ...
+      break;
+    case "checkout":
+      // ...
+      break;
+    default:
+      const _neverUse: never = action;
+      throw new Error("This action not exist");
   }
 }
 
-run(input);
-
-async function getData() {
-  try {
-    fetch("");
-  } catch (error) {
-    if (error instanceof Error) console.log(error.message);
-  }
+function isString(x: string | number): boolean {
+  if (typeof x === "string") return true;
+  else if (typeof x === "number") return false;
+  generatorError("text");
 }
-
-async function getDataForce() {
-  try {
-    fetch("");
-  } catch (error) {
-    const e = error as Error;
-  }
-}
-
-type U1 = unknown | null; // union
-
-type I1 = unknown & string; // intersection
