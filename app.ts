@@ -1,33 +1,23 @@
-function generatorError(message: string): never {
-  throw new Error(message);
+const n: null = null;
+const n1: any = null;
+// const n2: number = null;
+// const n3: string = null;
+// const n4: boolean = null;
+// const n5: undefined = null;
+
+interface IUser {
+  name: string;
 }
-
-function dumpError(): never {
-  while (true) {}
-}
-
-function rec(): never {
-  return rec();
-}
-
-type paymentAction = "refunc" | "checkout" | "reject";
-
-function processAction(action: paymentAction) {
-  switch (action) {
-    case "refunc":
-      // ...
-      break;
-    case "checkout":
-      // ...
-      break;
-    default:
-      const _neverUse: never = action;
-      throw new Error("This action not exist");
+function getUser() {
+  if (Math.random() > 0.5) {
+    return null;
+  } else {
+    return { name: "Max" } as IUser;
   }
 }
 
-function isString(x: string | number): boolean {
-  if (typeof x === "string") return true;
-  else if (typeof x === "number") return false;
-  generatorError("text");
+const user = getUser();
+if(user) {
+    const userName = user.name;
 }
+
