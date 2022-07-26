@@ -1,11 +1,3 @@
-let a = 5;
-let b: string = a.toString();
-let e = new String(a).valueOf();
-let f = new Boolean(a).valueOf();
-
-let c = "213";
-let d: number = +c;
-
 interface IUser {
   name: string;
   email: string;
@@ -23,14 +15,23 @@ interface IAdmin {
   role: number;
 }
 
-const admin: IAdmin = {
-  ...user,
-  role: 1,
-};
+function logId(id: string | number): void {
+  if (isString(id)) console.log("It is string");
+  else console.log("It is number");
+}
 
-function userToAdmin(user: IUser): IAdmin {
-  return {
-    name: user.name,
-    role: 1,
-  };
+function isString(x: string | number): x is string {
+  return typeof x === "string";
+}
+
+function isAdmin(user: IUser | IAdmin): user is IAdmin {
+  return "role" in user;
+}
+
+function setRole(user: IUser | IAdmin) {
+  if (isAdmin(user)) {
+    user.role = 0;
+  } else {
+    throw new Error("User in not Admin");
+  }
 }
