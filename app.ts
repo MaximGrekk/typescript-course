@@ -1,23 +1,36 @@
-const n: null = null;
-const n1: any = null;
-// const n2: number = null;
-// const n3: string = null;
-// const n4: boolean = null;
-// const n5: undefined = null;
+let a = 5;
+let b: string = a.toString();
+let e = new String(a).valueOf();
+let f = new Boolean(a).valueOf();
+
+let c = "213";
+let d: number = +c;
 
 interface IUser {
   name: string;
-}
-function getUser() {
-  if (Math.random() > 0.5) {
-    return null;
-  } else {
-    return { name: "Max" } as IUser;
-  }
+  email: string;
+  login: string;
 }
 
-const user = getUser();
-if(user) {
-    const userName = user.name;
+const user = {
+  name: "Dima",
+  email: "lagransh@gmail.com",
+  login: "lagransh",
+} as IUser;
+
+interface IAdmin {
+  name: string;
+  role: number;
 }
 
+const admin: IAdmin = {
+  ...user,
+  role: 1,
+};
+
+function userToAdmin(user: IUser): IAdmin {
+  return {
+    name: user.name,
+    role: 1,
+  };
+}
